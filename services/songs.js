@@ -38,7 +38,6 @@ exports.update = (id, songs) => {
     where: {id: id}
   })
   .spread(function(newObj, created) {
-    // set:
     for(var key in songs) {
       newObj[key] = songs[key];
     }
