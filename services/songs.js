@@ -32,3 +32,17 @@ exports.deleteAll = (id) => {
     where: {}
   });
 };
+
+exports.update = (id, songs) => {
+  return db.Songs.findOrCreate({
+    where: {id: id}
+  })
+  .spread(function(newObj, created) {
+    // set:
+    for(var key in songs) {
+      newObj[key] = songs[key];
+    }
+
+    return newObj.save();
+  });
+};
