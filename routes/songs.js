@@ -31,6 +31,9 @@ router.get('/', (req, res) => {
 });
 
 router.get('/add', (req, res) => {
+  // if(!req.accepts('text/html')){
+  //   return res.status(403);
+  // }
   return res.render('add');
 });
 
