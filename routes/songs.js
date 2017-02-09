@@ -1,8 +1,18 @@
 const router = require('express').Router();
 const SongService = require('../services/songs');
 
+var TestData = function(req, res, next) {
+    let verif = true;
+    if(typeof req.body.artist !== 'string'){verif = false;}
+    if(typeof req.body.album !== 'string'){verif = false;}
+    if(typeof req.body.title !== 'string'){verif = false;}
+    if(typeof req.body.year !== 'string'){verif = false;}
+    if(typeof req.body.bpm !== 'string'){verif = false;}
+    if(!verif){res.status(403).send(err);}
+    else{next();}
+};
 
-router.post('/', (req, res) => {
+router.post('/', TestData, (req, res) => {
   return SongService.create(req.body)
     .then(song => {
        res.status(201).send(song);
@@ -19,6 +29,11 @@ router.get('/', (req, res) => {
       res.status(200).send(songs);
     });
 });
+
+router.get('/add', (req, res) => {
+  return res.render('add');
+});
+
 
 router.get('/:id', (req, res) => {
   // req.query = {id: req.params.id};

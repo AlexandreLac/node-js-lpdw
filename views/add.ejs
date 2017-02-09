@@ -1,0 +1,26 @@
+<% include partials/header %> 
+<h1>Add song</h1>
+<form action="/songs" method="post">
+	<div class="input-group"> 
+	<label>Title</label>
+	<input name="title" type="text">
+	</div>
+	<div class="input-group"> 
+	<label>Album</label>
+	<input type="text" name="album">
+	</div>
+	<div class="input-group"> 
+	<label>Artist</label>
+	<input type="text" name="artist">
+	</div>
+	<div class="input-group"> 
+	<label>Year</label>
+	<input type="number" name="year">
+	</div>
+	<div class="input-group"> 
+	<label>Bpm</label>
+	<input type="number" name="bpm">
+	</div>
+	<input type="submit" value="Submit">
+</form>
+<% include partials/footer %>
