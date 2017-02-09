@@ -35,7 +35,7 @@ router.get('/:id', (req, res) => {
         return res.status(404).send({err: `id ${req.params.id} not found`});
       }
       if (req.accepts('text/html')) {
-        return res.render('song', {song: song});
+        return res.render('song', {song: song[0]});
       }
       if (req.accepts('application/json')) {
         return res.status(200).send(song);

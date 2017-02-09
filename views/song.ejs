@@ -1,5 +1,6 @@
-<% include partials/header %> <h1><%=song.title%></h1> <hr/>
-Album : <%=song.album%> Artist : <%=song.artist%> <% if (song.year) { %>
+<% include partials/header %> 
+<h1><%=song.title%></h1> <hr/>
+Album : <%=song.id %> Artist : <%=song.artist%> <% if (song.year) { %>
       Year   : <%=song.year%>
    <% } %>
 <% if (song.bpm) { %> BPM : <%=song.bpm%>
