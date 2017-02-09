@@ -22,3 +22,5 @@ sequelize.sync()
  
 const Songs = sequelize.import(path.join(__dirname, 'songs'));
 exports.Songs = Songs;
+const Users = sequelize.import(path.join(__dirname, 'users'));
+exports.Users = Users;

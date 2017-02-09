@@ -20,7 +20,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
+var verifyAuth = function(req, res, next) {
+	if (req.originalUrl === '/signup' || req.originalUrl === '/login') {
+	next(); }
+	// if (req.isAuthenticated()) { return next();}
+	if (true) { return next();}
+	res.redirect('/login'); 
+};
+app.all('*', verifyAuth);
 app.use('/', index);
 app.use('/users', users);
 app.use('/songs', songs);
