@@ -21,11 +21,27 @@ router.get('/', (req, res) => {
 });
 
 router.get('/:id', (req, res) => {
-  req.query = {id: req.params.id};
-  SongService.find(req.query)
-    .then(songs => {
-      res.status(200).send(songs);
-    });
+  // req.query = {id: req.params.id};
+  // SongService.find(req.query)
+  //   .then(songs => {
+  //     res.status(200).send(songs);
+  //   });
+  if (!req.accepts('text/html') && !req.accepts('application/json')) {
+    return res.status(406).send({err: 'Not valid type for asked resource'});
+  }
+  SongService.find({id: req.params.id})
+    .then(song => {
+      if (!song) {
+        return res.status(404).send({err: `id ${req.params.id} not found`});
+      }
+      if (req.accepts('text/html')) {
+        return res.render('song', {song: song});
+      }
+      if (req.accepts('application/json')) {
+        return res.status(200).send(song);
+      }
+    })
+  ;
 });
 
 router.put('/:id', (req, res) => {
