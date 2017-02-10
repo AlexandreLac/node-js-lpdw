@@ -8,6 +8,7 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var songs = require('./routes/songs');
 var app = express();
+var cors = require('cors');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -27,6 +28,7 @@ var verifyAuth = function(req, res, next) {
 	if (true) { return next();}
 	res.redirect('/login'); 
 };
+app.use(cors());
 app.all('*', verifyAuth);
 app.use('/', index);
 app.use('/users', users);
